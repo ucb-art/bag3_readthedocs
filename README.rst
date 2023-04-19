@@ -1,9 +1,4 @@
-Template for the Read the Docs tutorial
+Documentation for BAG 3.0 / BAG 3++
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+This work-in-progress GitHub repo includes Sphinx docs for BAG 3++.

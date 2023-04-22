@@ -1,7 +1,7 @@
 BAG3++ Workspaces
 =================
 
-Workspaces are available in the following open source PDKs. Please git clone and follow the
+Workspaces are available for the following open source PDKs. Please git clone and follow the
 instructions in the README.
 
 Available workspaces
@@ -10,7 +10,7 @@ Available workspaces
    an academic FinFET PDK ``cds_ff_mpt`` from Cadence.
 
 #. `BAG3++ workspace for SkyWater130 <https://github.com/ucb-art/bag3_skywater130_workspace>`_:
-   This is configured for the ``s8`` version of the planar PDK.
+   This is configured for the ``s8`` version of the planar SkyWater 130nm PDK.
 
 Updating path configurations
 ----------------------------
@@ -34,12 +34,11 @@ changes.
 
     	export CMAKE_HOME=/path/to/programs/cmake-3.17.0
 
-#. In ``.bashrc``, update the paths to the PDK and other programs.
+#. In ``.bashrc``, update the paths to the PDK installation directory and other programs.
 
 #. For server traffic management and space utilization reasons, we recommend putting simulation
    results, output logs from DRC, LVS, etc, in a "scratch" space to avoid increasing the size of
-   the workspace area. Configure BAG to use the "scratch" space by editing this line in ``
-   .bashrc_bag``:
+   the workspace area. Configure BAG to use the "scratch" space by editing this line in ``.bashrc_bag``:
 
     .. code-block:: bash
 

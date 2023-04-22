@@ -14,7 +14,9 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
     * devtoolset-8 (compilers)
     * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
 
-#. Copy the ``environment.yml`` from this documentation repo. It can be accessed with this `link`_. Build a miniconda3 environment from the file:
+#. Copy the ``environment.yml`` from this `link`_ in the documentation repo, and update the
+   ``prefix`` in the last line to your desired location. Then build a miniconda3
+   environment from the yml file:
 
     .. code-block:: bash
        
@@ -75,7 +77,7 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
         $ wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz
         $ tar -xvf hd5f-1.10.6.tar.gz
         $ cd hd5f-1.10.6
-        $ .\/configure --prefix=/path/to/conda/env/envname
+        $ ./configure --prefix=/path/to/conda/env/envname
         $ make -j24
         $ make install
 
@@ -86,7 +88,7 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
         $ wget https://boostorg.jfrog.io/artifactory/main/release/1.72.0/source/boost_1_72_0.tar.gz
         $ tar -xvf boost_1_72_0.tar.gz
         $ cd boost_1_72_0
-        $ .\/bootstrap.sh --prefix=/path/to/conda/env/envname
+        $ ./bootstrap.sh --prefix=/path/to/conda/env/envname
 
 #.  In the resulting ``project-config.jam`` file, change the ``using python`` line to:
 

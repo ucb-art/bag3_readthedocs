@@ -1,0 +1,117 @@
+Initial Server Setup
+====================
+
+.. note::
+
+   BWRC users: Everything described in this page is already configured in ``/tools/C/bag``, so you can jump ahead to the next page.
+
+C++ requirements and dependencies
+---------------------------------
+
+#. Install (on CentOS or Red Hat versions >=7):
+    * httpd24-curl
+    * httpd24-libcurl
+    * devtoolset-8 (compilers)
+    * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
+
+#. Create and activate a miniconda3 environment.
+
+#. Create a directory to install programs in (referred to as ``/path/to/programs``).
+
+#. Download and extract cmake 3.17.0, then build:
+
+    .. code-block:: bash
+
+        $ wget https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz
+        $ tar -xvf cmake-3.17.0.tar.gz
+        $ cd cmake-3.17.0
+        $ ./bootstrap --prefix=/path/to/conda/env/envname --parallel=4
+        $ make -j4
+        $ make install
+
+#.  Install magic\_enum as follows:
+
+    .. code-block:: bash
+
+        $ git clone https://github.com/Neargye/magic_enum.git
+        $ cd magic_enum
+        $ cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DMAGIC_ENUM_OPT_BUILD_EXAMPLES=FALSE -DMAGIC_ENUM_OPT_BUILD_TESTS=FALSE -DCMAKE_INSTALL_PREFIX=/path/to/conda/env/envname
+        $ cmake --build build
+        $ cd build
+        $ make install
+
+#.  Install yaml-cpp:
+
+    .. code-block:: bash
+
+        $ git clone https://github.com/jbeder/yaml-cpp.git
+        $ cd yaml-cpp
+        $ cmake -B_build -H. -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=/path/to/conda/env/envname
+        $ cmake --build _build --target install -- -j 4
+
+#.  Install libfyaml:
+
+    .. code-block:: bash
+
+        $ git clone https://github.com/pantoniou/libfyaml.git
+        $ cd libfyaml
+        $ ./bootstrap.sh
+        $ ./configure --prefix=/path/to/conda/env/envname
+        $ make -j12
+        $ make install
+
+#.  Download HDF5 1.10 (h5py-2.10 does not work with 1.12 yet), then install:
+
+    .. code-block:: bash
+
+        $ wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz
+        $ tar -xvf hd5f-1.10.6.tar.gz
+        $ cd hd5f-1.10.6
+        $ .\/configure --prefix=/path/to/conda/env/envname
+        $ make -j24
+        $ make install
+
+#.  Boost - download source, unzip. In directory, run:
+
+    .. code-block:: bash
+
+        $ wget https://boostorg.jfrog.io/artifactory/main/release/1.72.0/source/boost_1_72_0.tar.gz
+        $ tar -xvf boost_1_72_0.tar.gz
+        $ cd boost_1_72_0
+        $ .\/bootstrap.sh --prefix=/path/to/conda/env/envname
+
+#.  Change the ``using python`` line to:
+
+    .. code-block:: bash
+
+        using python : 3.7 : /path/to/conda/env/envname : /path/to/conda/env/envname/include/python3.7m ;
+
+#. Delete the line:
+
+    .. code-block:: bash
+
+        path-constant ICU_PATH : /usr ;
+
+#.  Run:
+
+    .. code-block:: bash
+
+        $ ./b2 --build-dir=_build cxxflags=-fPIC -j8 -target=shared,static --with-filesystem --with-serialization --with-program_options install | tee install.log
+
+Remember to check ``install.log`` to see if there's any error messages (like python build error,
+etc.). Later, if you have issues upon building BAG, reinstall fmt>7.2 in conda, and spdlog in conda.
+
+
+Python dependencies
+-------------------
+
+#. Install the following standard python dependencies:
+    * numpy
+    * scipy
+    * matplotlib
+
+#. Install libpsf:
+
+    .. code-block:: bash
+
+        $ pip install libpsf

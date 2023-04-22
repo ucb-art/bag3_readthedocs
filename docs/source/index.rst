@@ -1,13 +1,18 @@
-Welcome to Lumache's documentation!
+Welcome to BAG3++ documentation!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**BAG3++** is BWRC's release of BAG 3.0. It removes the dependence on all closed-source CAD tools
+except the complete Cadence Virtuoso Design Suite.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+BAG3++ is predominantly a Python project. Users write layout and schematic generators, and
+measurement managers and design scripts in Python. However most of the back-end infrastructure is
+implemented in C++ for faster execution. Hence the compilation of the C++ back-end requires the
+installation of various C++ dependencies. Additionally, there are a few standard Python
+dependencies that need to be installed to execute the generators.
+
+Please go through the :doc:`dependencies` section for detailed instructions about configuring the
+server to be able to run BAG3++. Then use the publicly available workspaces to run some example
+BAG scripts.
 
 .. note::
 
@@ -18,5 +23,5 @@ Contents
 
 .. toctree::
 
-   usage
-   api
+   dependencies
+   workspaces

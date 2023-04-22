@@ -14,11 +14,13 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
     * devtoolset-8 (compilers)
     * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
 
-#. From a BAG workspace, copy the ``environment.yml``. Build a miniconda3 environment from the file:
+#. Copy the ``environment.yml`` from this documentation repo. It can be accessed with this `link`_. Build a miniconda3 environment from the file:
 
     .. code-block:: bash
        
         $ conda env create -f environment.yml
+
+    .. _link: https://github.com/ucb-art/bag3_readthedocs/blob/main/docs/source/environment.yml 
 
    Successful building should give all python dependencies, as well as the C++ fmt and spdlog packages. 
 
@@ -86,13 +88,13 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
         $ cd boost_1_72_0
         $ .\/bootstrap.sh --prefix=/path/to/conda/env/envname
 
-#.  Change the ``using python`` line to:
+#.  In the resulting ``project-config.jam`` file, change the ``using python`` line to:
 
     .. code-block:: bash
 
         using python : 3.7 : /path/to/conda/env/envname : /path/to/conda/env/envname/include/python3.7m ;
 
-#. Delete the line:
+    Then delete the line:
 
     .. code-block:: bash
 

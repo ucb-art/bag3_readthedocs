@@ -5,16 +5,22 @@ Initial Server Setup
 
    BWRC users: Everything described in this page is already configured in ``/tools/C/bag``, so you can jump ahead to the next page.
 
-C++ requirements and dependencies
----------------------------------
+BAG3++ requires multiple Python and C++ dependences. These instructions will install the dependencies on your machine.  
 
 #. Install (on CentOS or Red Hat versions >=7):
+
     * httpd24-curl
     * httpd24-libcurl
     * devtoolset-8 (compilers)
     * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
 
-#. Create and activate a miniconda3 environment.
+#. From a BAG workspace, copy the ``environment.yml``. Build a miniconda3 environment from the file:
+
+    .. code-block:: bash
+       
+        $ conda env create -f environment.yml
+
+   Successful building should give all python dependencies, as well as the C++ fmt and spdlog packages. 
 
 #. Create a directory to install programs in (referred to as ``/path/to/programs``).
 
@@ -99,19 +105,4 @@ C++ requirements and dependencies
         $ ./b2 --build-dir=_build cxxflags=-fPIC -j8 -target=shared,static --with-filesystem --with-serialization --with-program_options install | tee install.log
 
 Remember to check ``install.log`` to see if there's any error messages (like python build error,
-etc.). Later, if you have issues upon building BAG, reinstall fmt>7.2 in conda, and spdlog in conda.
-
-
-Python dependencies
--------------------
-
-#. Install the following standard python dependencies:
-    * numpy
-    * scipy
-    * matplotlib
-
-#. Install libpsf:
-
-    .. code-block:: bash
-
-        $ pip install libpsf
+etc.). 

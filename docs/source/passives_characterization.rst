@@ -1,8 +1,8 @@
 Passives characterization
 =========================
 
-The passives characterization models the specified device-under-test (DUT) as a pi model and
-estimates the capacitance / inductance/ resistance.
+The passives characterization models the specified device-under-test (DUT) as a pi network and
+estimates its capacitance / inductance / resistance.
 
 #. Resistor characterization:
 

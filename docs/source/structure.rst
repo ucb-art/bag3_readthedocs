@@ -11,17 +11,17 @@ Process agnostic submodules
 A typical BAG workspace will have the following process agnostic submodules:
 
 * **BAG_framework**: The core framework, defining base classes for generators, interfaces with
-                     simulation and verification tools, etc
+  simulation and verification tools, etc
 
     * **pybag**: This defines the python bindings for the C++ implementation of the back-end.
 
         * **cbag**: This contains the C++ implementation of the back-end.
 
 * **xbase**: The core layout framework (XBase), that defines the various layout base classes like
-             MOSBase, ArrayBase, ResArrayBase, etc.
+  MOSBase, ArrayBase, ResArrayBase, etc.
 
 * **bag3_testbenches**: This defines the various generic testbenches (DCTB, ACTB, SPTB, PSSTB,
-                        etc) that are used in MeasurementManagers.
+  etc) that are used in MeasurementManagers.
 
 * **bag3_digital**: Repository with generators for "digital" custom cells
 
@@ -35,8 +35,7 @@ Process specific submodules
 A typical BAG workspace will have the following process specific submodules:
 
 * **<tech repo>**: This usually has the same name as the PDK, and contains implementations of the
-                   layout primitives, ``BAG_prim`` schematics, netlisting setup, verification tools
-                   setup, etc.
+  layout primitives, ``BAG_prim`` schematics, netlisting setup, verification tools setup, etc.
 
 * **data/xbase**: Process specific yamls for executing **xbase** generators.
 

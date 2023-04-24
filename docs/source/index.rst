@@ -25,3 +25,7 @@ Contents
 
    dependencies
    workspaces
+   structure
+   inverter_beta_designer
+   mos_characterization
+   passives_characterization

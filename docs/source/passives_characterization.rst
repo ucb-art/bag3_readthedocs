@@ -23,7 +23,7 @@ estimates its capacitance / inductance / resistance.
    The script has also been used to characterize MIMCaps in processes that have MIMCaps.
 
 
-.. note::
+.. warning::
 
    In ``cds_ff_mpt``, resistors (poly and metal) extract incorrectly, so the extracted netlist
    runs into simulation errors. So the above two examples won't work in that PDK in extracted mode.

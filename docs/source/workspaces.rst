@@ -50,3 +50,6 @@ changes.
     .. code-block:: bash
 
         asimenv.startup projectDir string "/path/to/scratch/space"
+
+#. Update the ``PDK`` symlink inside ``<tech_repo>/workspace_setup`` to point to the local PDK
+   installation directory.

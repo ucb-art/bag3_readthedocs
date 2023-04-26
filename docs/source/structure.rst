@@ -1,9 +1,9 @@
 Workspace Components
 ====================
 
-In the spirit of enabling process agnostic generators, the BAG workspace has some process
-agnostic generator repositories, one process specific primitives library, and data repositories
-containing process specific yamls for the generator repositories.
+In the spirit of enabling process agnostic generators, the BAG workspace rigorously maintains a
+clear separation between process agnostic generator repositories, and process specific primitives
+library and data repositories containing process specific yamls for the generator repositories.
 
 Process agnostic submodules
 ---------------------------
@@ -29,6 +29,11 @@ A typical BAG workspace will have the following process agnostic submodules:
 
 * **bag3_magnetics**: Repository with generators for magnetic passives like inductor, t-coil
 
+.. warning::
+
+    Never put any process specific information in the previous repositories to avoid violating NDAs.
+
+
 Process specific submodules
 ---------------------------
 
@@ -46,3 +51,9 @@ A typical BAG workspace will have the following process specific submodules:
 * **data/bag3_analog**: Process specific yamls for executing **bag3_analog** generators.
 
 * **data/bag3_magnetics**: Process specific yamls for executing **bag3_magnetics** generators.
+
+.. warning::
+
+    We can release these repositories for only ``cds_ff_mpt`` and ``SkyWater130`` since those PDKs
+    are open source. The corresponding process specific repositories for closed source PDKs are
+    hosted on BWRC's internal Git server.

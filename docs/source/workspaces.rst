@@ -4,6 +4,13 @@ BAG3++ Workspaces
 Workspaces are available for the following open source PDKs. Please git clone and follow the
 instructions in the README.
 
+.. note::
+
+    We strongly recommend using the PyCharm editor for easily navigating across the function
+    definitions and quickly viewing doc strings in the various python files. For convenience, the
+    ``.idea`` folders are included in all the repositories so that PyCharm gets auto-configured
+    correctly in each workspace.
+
 Available workspaces
 --------------------
 #. `BAG3++ workspace for cds_ff_mpt <https://github.com/ucb-art/bag3_ams_cds_ff_mpt>`_: This is

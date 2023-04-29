@@ -12,7 +12,18 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
     * httpd24-curl
     * httpd24-libcurl
     * devtoolset-8 (compilers)
-    * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
+    * rh-git218 (git with nice visual colors; newer git versions don't track symlinks)
+    
+Note: rh-git29 is not longer available, so update to rh-git218.    
+    
+Note, these packages are available in the SCL repository, which must be installed: yum install centos-release-scl-rh centos-release-scl
+
+# On CentOS, install package centos-release-scl available in CentOS repository:
+$ sudo yum install centos-release-scl
+
+# On RHEL, enable RHSCL repository for you system:
+$ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
+
 
 #. Copy the ``environment.yml`` from this `link`_ in the documentation repo, and update the
    ``prefix`` in the last line to your desired location. Then build a miniconda3

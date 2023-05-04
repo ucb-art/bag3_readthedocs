@@ -75,8 +75,8 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
     .. code-block:: bash
 
         $ wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz
-        $ tar -xvf hd5f-1.10.6.tar.gz
-        $ cd hd5f-1.10.6
+        $ tar -xvf hdf5-1.10.6.tar.gz
+        $ cd hdf5-1.10.6
         $ ./configure --prefix=/path/to/conda/env/envname
         $ make -j24
         $ make install

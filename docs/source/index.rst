@@ -40,3 +40,4 @@ Contents
    mos_characterization
    passives_characterization
    new_pdk_setup
+   contact

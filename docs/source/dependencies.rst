@@ -5,52 +5,66 @@ Initial Server Setup
 
    BWRC users: Everything described in this page is already configured in ``/tools/C/bag``, so you can jump ahead to the next page.
 
-BAG3++ requires multiple Python and C++ dependences. These instructions will install the dependencies on your machine.  
+BAG3++ requires multiple Python and C++ dependences.
+These instructions will install the dependencies on your server; typically the one that also hosts your EDA toolchain (e.g. Virtuoso).
 
-#. Install (on CentOS or Red Hat versions >=7):
+#. Install basic tools for fetching and building dependencies, via YUM/DNF:
+
+    * curl
+    * make
+    * wget
+    * openssl-devel (needed for compiling cmake)
+    * gcc
+    * gdb
+    * autoconf (needed for compiling libfyaml)
+    * automake
+    * libtool
+
+#. Install SCL packages via YUM/DNF (on CentOS or RHEL versions >=7):
 
     * httpd24-curl
     * httpd24-libcurl
-    * devtoolset-8 (compilers)
+    * devtoolset-8 (For newer versions of compilers)
     * rh-git218 (git with nice visual colors; newer git versions don't track symlinks)
-    
-Note: rh-git29 is not longer available, so update to rh-git218.    
-    
-Note, these packages are available in the SCL repository, which must be installed: yum install centos-release-scl-rh centos-release-scl
+   
+   If not already done, the `Software Collections (SCL) repositories <https://wiki.centos.org/AdditionalResources/Repositories/SCL>`_ must first be enabled by installing the 
+   packages ``centos-release-scl`` and ``centos-release-scl-rh``, followed by running ``sudo yum-config-manager --enable rhel-server-rhscl-7-rpms``.
 
-# On CentOS, install package centos-release-scl available in CentOS repository:
-$ sudo yum install centos-release-scl
-
-# On RHEL, enable RHSCL repository for you system:
-$ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
-
-
-#. Copy the ``environment.yml`` from this `link`_ in the documentation repo, and update the
-   ``prefix`` in the last line to your desired location. Then build a miniconda3
-   environment from the yml file:
+#. Create a directory to install programs in (referred to as ``/path/to/programs``). Subsequent steps occur inside this directory.
+   
+   
+#. Install miniconda, if not already available. Python 3.7 is supported/tested. Follow prompts, to create environment and set custom location if desired.
 
     .. code-block:: bash
-       
-        $ conda env create -f environment.yml
 
-    .. _link: https://github.com/ucb-art/bag3_readthedocs/blob/main/docs/source/environment.yml 
+        $ cd /path/to/programs
+        $ wget https://repo.anaconda.com/miniconda/Miniconda3-py37_23.1.0-1-Linux-x86_64.sh
+        $ bash Miniconda3-py37_23.1.0-1-Linux-x86_64.sh -b -f -p ./miniconda3
 
-   Successful building should give all python dependencies, as well as the C++ fmt and spdlog packages. 
+#. Download the ``environment.yml`` from this `link`_ in the documentation repo. Then build a miniconda3 environment from the .yml file, where ``/path/to/conda/env/envname`` is the full path to desired environment name.
 
-#. Create a directory to install programs in (referred to as ``/path/to/programs``).
+    .. code-block:: bash
+              
+        $ wget https://raw.githubusercontent.com/ucb-art/bag3_readthedocs/main/docs/source/environment.yml
+        $ env create -f environment.yml --force -p ./path/to/conda/env/envname
 
-#. Download and extract cmake 3.17.0, then build:
+   .. _link: https://github.com/ucb-art/bag3_readthedocs/blob/main/docs/source/environment.yml 
+
+   Successful environment creation should provide all python dependencies, as well as the C++ fmt and spdlog packages. 
+
+#. Download and extract cmake 3.17.0, then build with updated GCC:
 
     .. code-block:: bash
 
         $ wget https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz
         $ tar -xvf cmake-3.17.0.tar.gz
         $ cd cmake-3.17.0
+        $ scl enable devtoolset-8 bash
         $ ./bootstrap --prefix=/path/to/conda/env/envname --parallel=4
         $ make -j4
         $ make install
 
-#.  Install magic\_enum as follows:
+#.  Install magic\_enum:
 
     .. code-block:: bash
 
@@ -70,7 +84,7 @@ $ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
         $ cmake -B_build -H. -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=/path/to/conda/env/envname
         $ cmake --build _build --target install -- -j 4
 
-#.  Install libfyaml:
+#.  Install libfyaml: (if configure step fails, try running ``$ autoreconf -vif``)
 
     .. code-block:: bash
 
@@ -92,7 +106,7 @@ $ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
         $ make -j24
         $ make install
 
-#.  Boost - download source, unzip. In directory, run:
+#.  Acquire Boost 1.72.0. First download, extract and configure:
 
     .. code-block:: bash
 
@@ -101,7 +115,7 @@ $ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
         $ cd boost_1_72_0
         $ ./bootstrap.sh --prefix=/path/to/conda/env/envname
 
-#.  In the resulting ``project-config.jam`` file, change the ``using python`` line to:
+#.  Next, in the resulting ``project-config.jam`` file, change the ``using python`` line to:
 
     .. code-block:: bash
 
@@ -113,11 +127,10 @@ $ sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
 
         path-constant ICU_PATH : /usr ;
 
-#.  Run:
+#.  Finally, run:
 
     .. code-block:: bash
 
         $ ./b2 --build-dir=_build cxxflags=-fPIC -j8 -target=shared,static --with-filesystem --with-serialization --with-program_options install | tee install.log
 
-Remember to check ``install.log`` to see if there's any error messages (like python build error,
-etc.). 
+Remember to check ``install.log`` to see if there's any error messages (like python build error, etc.). 

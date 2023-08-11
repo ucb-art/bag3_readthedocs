@@ -4,13 +4,19 @@ Tutorial: Inverter Beta Designer
 This section walks through a simple tutorial, highlighting the various BAG3 helper shell scripts.
 
 All the following scripts can be executed stand-alone. Run each script with ``-h`` to see the
-various execution options.
+various execution options. 
 
 #. Running a schematic generator of a simple inverter:
 
     .. code-block:: bash
 
         $ ./gen_cell.sh data/bag3_digital/specs_blk/inv/gen_sch.yaml
+
+This scipt passes these
+
+    .. code-block:: yaml
+        
+
 
 #. Transient simulation of an inverter with clock input:
 
@@ -29,3 +35,6 @@ various execution options.
     .. code-block:: bash
 
         $ ./dsn_cell.sh data/bag3_digital/specs_blk/inv/dsn.yaml
+
+
+ 

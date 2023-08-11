@@ -29,6 +29,3 @@ various execution options.
     .. code-block:: bash
 
         $ ./dsn_cell.sh data/bag3_digital/specs_blk/inv/dsn.yaml
-
-
- 

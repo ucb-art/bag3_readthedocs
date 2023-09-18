@@ -135,4 +135,3 @@ dependencies:
       - wcwidth==0.1.9
       - zipp==3.1.0
       - zmq==0.0.0
-prefix: /tools/C/bag/miniconda3/envs/bag_py3d7_c

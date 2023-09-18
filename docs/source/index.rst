@@ -39,3 +39,5 @@ Contents
    inverter_beta_designer
    mos_characterization
    passives_characterization
+   new_pdk_setup
+   contact

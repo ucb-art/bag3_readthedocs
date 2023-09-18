@@ -12,7 +12,7 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
     * httpd24-curl
     * httpd24-libcurl
     * devtoolset-8 (compilers)
-    * rh-git29 (git with nice visual colors; newer git versions don't track symlinks)
+    * rh-git218
 
 #. Copy the ``environment.yml`` from this `link`_ in the documentation repo, and update the
    ``prefix`` in the last line to your desired location. Then build a miniconda3
@@ -26,7 +26,7 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
 
    Successful building should give all python dependencies, as well as the C++ fmt and spdlog packages. 
 
-#. Create a directory to install programs in (referred to as ``/path/to/programs``).
+#. Create a directory to install programs in (referred to as ``/path/to/programs``). For all following program install steps, use the ``gcc`` that comes with ``devtoolset-8``.
 
 #. Download and extract cmake 3.17.0, then build:
 
@@ -96,7 +96,7 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
 
         using python : 3.7 : /path/to/conda/env/envname : /path/to/conda/env/envname/include/python3.7m ;
 
-    Then delete the line:
+    If it exists, delete the line:
 
     .. code-block:: bash
 
@@ -108,5 +108,14 @@ BAG3++ requires multiple Python and C++ dependences. These instructions will ins
 
         $ ./b2 --build-dir=_build cxxflags=-fPIC -j8 -target=shared,static --with-filesystem --with-serialization --with-program_options install | tee install.log
 
-Remember to check ``install.log`` to see if there's any error messages (like python build error,
-etc.). 
+    Remember to check ``install.log`` to see if there's any error messages (like python build error, etc.). 
+
+
+.. note::
+    Some users report that ``source .bashrc`` after installing all programs will result in the following error:
+
+    .. code-block:: bash
+    
+        $ rpm: /path/anaconda3/envs/bag_py3d7_c/lib/liblzma.so.5: version `XZ_5.1.2alpha` not found (required by /lib64/librpmio.so.3)
+    
+    To fix this, remove ``/path/to/conda/envs/bag_py3d7_c/lib/liblzma.so.5.2.5``. ``rpm`` will then function correctly, assuming the ``rpm`` used is in ``/usr/bin/rpm``.

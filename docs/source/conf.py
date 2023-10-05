@@ -58,6 +58,7 @@ autoapi_dirs = ['../../bag/src/bag',
                 '../../bag3_digital/src/bag3_digital',
                 '../../bag3_magnetics/src/bag3_magnetics',
                 '../../xbase/src/xbase',   ]
+autoapi_add_toctree_entry = False
 autoapi_python_use_implicit_namespaces = True
 autoapi_file_patterns = ['*.py']
 autoapi_options = [ 'members', 'undoc-members', 'private-members', 'show-inheritance', 'show-module-summary', 'special-members']

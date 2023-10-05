@@ -31,6 +31,7 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
 
    dependencies
    workspaces
@@ -41,3 +42,8 @@ Contents
    passives_characterization
    new_pdk_setup
    contact
+
+.. toctree::
+   :maxdepth: 1
+   
+   api

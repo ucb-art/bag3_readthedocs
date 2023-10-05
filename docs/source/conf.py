@@ -60,7 +60,7 @@ autoapi_dirs = ['../../bag/src/bag',
                 '../../xbase/src/xbase',   ]
 autoapi_python_use_implicit_namespaces = True
 autoapi_file_patterns = ['*.py']
-autoapi_options = [ 'undoc-members', 'private-members', 'show-inheritance', 'show-module-summary', 'special-members']
+autoapi_options = [ 'members', 'undoc-members', 'private-members', 'show-inheritance', 'show-module-summary', 'special-members']
 suppress_warnings = ["autoapi"]
 
 # autosummary_generate = False

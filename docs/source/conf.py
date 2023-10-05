@@ -31,8 +31,8 @@ sys.path.insert(0, os.path.abspath('../../xbase/src'))
 # -- Project information
 
 project = 'BAG3++'
-copyright = '2023, Ayan Biswas'
-author = 'Ayan Biswas'
+copyright = '2023, Berkeley Wireless Research Center'
+author = 'Berkeley Wireless Research Center'
 
 release = '1.0'
 version = '1.0.0'

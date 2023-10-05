@@ -1,0 +1,23 @@
+[submodule "bag"]
+	path = bag
+	url = git@github.com:ucb-art/bag.git
+	branch = without_OA
+[submodule "xbase"]
+	path = xbase
+	url = git@github.com:ucb-art/xbase.git
+	branch = without_OA
+[submodule "bag3_testbenches"]
+	path = bag3_testbenches
+	url = git@github.com:ucb-art/bag3_testbenches.git
+	branch = develop
+[submodule "bag3_digital"]
+	path = bag3_digital
+	url = git@github.com:ucb-art/bag3_digital.git
+	branch = without_OA
+[submodule "bag3_analog"]
+	path = bag3_analog
+	url = git@github.com:ucb-art/bag3_analog.git
+	branch = without_OA
+[submodule "bag3_magnetics"]
+	path = bag3_magnetics
+	url = git@github.com:ucb-art/bag3_magnetics.git
